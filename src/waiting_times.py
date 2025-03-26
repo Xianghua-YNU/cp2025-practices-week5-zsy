@@ -62,7 +62,7 @@ def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
     # 2. 确定合适的bin数量
     bins = np.arange(0, max(waiting_times) + 2)
     # 3. 绘制直方图
-     plt.hist(waiting_times, bins=bins, align='left', edgecolor='black')
+    plt.hist(waiting_times, bins=bins, align='left', edgecolor='black')
     # 4. 设置坐标轴标签和标题
     plt.xlabel('Waiting Time')
     plt.ylabel('Frequency')
@@ -74,7 +74,7 @@ def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
     if log_scale:
         plt.yscale('log')
     # 6. 显示图形
-     plt.show()
+    plt.show()
     
 
 def analyze_waiting_time(waiting_times):
