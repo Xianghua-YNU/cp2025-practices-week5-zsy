@@ -58,7 +58,7 @@ def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
     """
     # 待实现:
     # 1. 创建图形
-     plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6))
     # 2. 确定合适的bin数量
     bins = np.arange(0, max(waiting_times) + 2)
     # 3. 绘制直方图
