@@ -77,7 +77,7 @@ def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
     plt.show()
     
 
-def analyze_waiting_time(waiting_times):
+def analyze_waiting_time(waiting_times, p_head=0.08):
     """分析等待时间的统计特性
     
     这个函数计算等待时间的均值、标准差，并与理论值进行比较。
