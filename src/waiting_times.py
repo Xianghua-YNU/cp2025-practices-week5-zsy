@@ -43,7 +43,7 @@ def calculate_waiting_times(coin_sequence):
     return waiting_times
     
 
-def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
+def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None, filename=None):
     """绘制等待时间直方图
     
     这个函数绘制等待时间的频率分布直方图，可选择使用对数坐标。
@@ -73,6 +73,8 @@ def plot_waiting_time_histogram(waiting_times, log_scale=False, n_flips=None):
     # 5. 如果log_scale为True，设置y轴为对数刻度
     if log_scale:
         plt.yscale('log')
+    if filename:
+        plt.savefig(filename)
     # 6. 显示图形
     plt.show()
     
@@ -130,18 +132,18 @@ def run_experiment(n_flips, title, p_head=0.08):
     # 1. 打印实验标题
     print(title)
     # 2. 生成硬币序列并计算等待时间
-    coin_sequence = generate_coin_sequence(n_flips)
+    coin_sequence = generate_coin_sequence(n_flips, p_head)
     waiting_times = calculate_waiting_times(coin_sequence)
     # 3. 分析等待时间并打印结果
-    stats = analyze_waiting_time(waiting_times)
+    stats = analyze_waiting_time(waiting_times, p_head)
     print(f"Mean waiting time: {stats['mean']:.2f}")
     print(f"Standard deviation: {stats['std']:.2f}")
     print(f"Theoretical mean (geometric): {stats['theoretical_mean']:.2f}")
     print(f"Theoretical mean (exponential): {stats['exponential_mean']:.2f}")
     print("\n")
     # 4. 绘制普通直方图和半对数直方图
-    plot_waiting_time_histogram(waiting_times, n_flips=n_flips)
-    plot_waiting_time_histogram(waiting_times, log_scale=True, n_flips=n_flips)
+    plot_waiting_time_histogram(waiting_times, n_flips=n_flips, filename='waiting_time_histogram.png')
+    plot_waiting_time_histogram(waiting_times, log_scale=True, n_flips=n_flips, filename='waiting_time_histogram_log.png')
     # 5. 返回等待时间数组和统计结果
     return waiting_times, stats
   
