@@ -100,7 +100,7 @@ def analyze_waiting_time(waiting_times, p_head=0.08):
     mean = np.mean(waiting_times)
     std = np.std(waiting_times)
     # 2. 计算理论平均等待时间（几何分布和指数分布）
-    theoretical_mean = 1 / p_head
+    theoretical_mean = (1 - p_head) / p_head
     # 3. 返回包含这些统计量的字典
     exponential_mean = -1 / np.log(1 - p_head)
     return {
@@ -111,7 +111,7 @@ def analyze_waiting_time(waiting_times, p_head=0.08):
     }
   
 
-def run_experiment(n_flips, title):
+def run_experiment(n_flips, title, p_head=0.08):
     """运行一次等待时间实验
     
     这个函数执行完整的等待时间实验流程，包括生成序列、计算等待时间、
