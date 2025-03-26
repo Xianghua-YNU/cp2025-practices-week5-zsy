@@ -1,0 +1,29 @@
+name: Run and Save Images
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          pip install numpy matplotlib
+
+      - name: Run script and save images
+        run: |
+          python your_script.py  # 替换为你的脚本文件名
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add output.png  # 替换为生成的PNG文件名
+          git commit -m "Add generated PNG"
+          git push
