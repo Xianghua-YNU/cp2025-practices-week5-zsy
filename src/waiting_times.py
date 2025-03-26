@@ -102,7 +102,7 @@ def analyze_waiting_time(waiting_times, p_head=0.08):
     # 2. 计算理论平均等待时间（几何分布和指数分布）
     theoretical_mean = (1 - p_head) / p_head
     # 3. 返回包含这些统计量的字典
-    exponential_mean = -1 / np.log(1 - p_head)
+    exponential_mean = 1 / p_head
     return {
         "mean": mean,
         "std": std,
