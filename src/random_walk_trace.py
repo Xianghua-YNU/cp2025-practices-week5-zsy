@@ -56,12 +56,13 @@ def plot_multiple_walks():
     # 1. 创建2x2的子图布局
     fig, axs = plt.subplots(2, 2, figsize=(12, 10))
     # 2. 对每个子图重复以下步骤：
-    #    - 生成随机行走轨迹
     fig.suptitle('四个不同的二维随机行走轨迹（1000步）')
     for i in range(2):
         for j in range(2):
-             x_coords, y_coords = random_walk_2d(1000)
-     #    - 绘制轨迹线
+    # —— 生成随机行走轨迹
+            x_coords, y_coords = random_walk_2d(1000)
+            
+    # —— 绘制轨迹
             axs[i, j].plot(x_coords, y_coords)
             axs[i, j].scatter([0], [0], color='green', zorder=2)
             axs[i, j].scatter([x_coords[-1]], [y_coords[-1]], color='red', zorder=2)
