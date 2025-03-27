@@ -89,8 +89,7 @@ if __name__ == "__main__":
     # TODO: 完成主程序
     # 提示：
     # 1. 获取数据和拟合结果
-    steps, msd = calculate_mean_square_displacement()
-    k = analyze_step_dependence()
+    steps, msd, k = analyze_step_dependence()
     # 2. 绘制实验数据点和理论曲线
     plt.figure(figsize=(8, 6))
     plt.scatter(steps, msd, color='blue', label='实验数据')
@@ -101,6 +100,9 @@ if __name__ == "__main__":
     plt.ylabel('均方位移')
     plt.legend()
     plt.grid(True)
+
+    plt.savefig('results/msd_vs_steps.png', dpi=300)
+    
     # 4. 打印数据分析结果
     print("数据分析结果:")
     print(f"  拟合系数 k: {k:.4f}")
