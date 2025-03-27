@@ -22,16 +22,14 @@ def random_walk_finals(num_steps, num_walks):
     """
     # TODO: 实现随机游走算法
     # 提示：
-    if num_steps <= 0:
-        return (np.zeros(num_walks), np.zeros(num_walks))
         
     # 1. 使用np.zeros初始化坐标数组
     x = np.zeros((num_walks, num_steps + 1))
     y = np.zeros((num_walks, num_steps + 1))
     # 2. 对每次游走使用np.random.choice生成±1的随机步长
     for i in range(num_walks):
-        steps_x = np.random.choice([-1, 1], size=num_steps)
-        steps_y = np.random.choice([-1, 1], size=num_steps)
+        steps_x = np.random.choice([-1, 1], num_steps)  
+        steps_y = np.random.choice([-1, 1], num_steps)
         
         x[i, 1:] = np.cumsum(steps_x)
         y[i, 1:] = np.cumsum(steps_y)
