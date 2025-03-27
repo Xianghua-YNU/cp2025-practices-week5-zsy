@@ -23,10 +23,12 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     plt.ylabel('概率')
     plt.grid(True)
     
+    # 保存图片
     plt.savefig('results/poisson_pmf.png', dpi=300)
     plt.show()
     
-    return pmf
+    return pmf  # 返回计算的PMF值
+
     
 
 def simulate_coin_flips(n_experiments=10000, n_flips=100, p_head=0.08):
