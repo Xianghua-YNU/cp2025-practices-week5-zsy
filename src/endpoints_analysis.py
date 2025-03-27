@@ -119,7 +119,7 @@ def analyze_x_distribution(endpoints):
     plt.legend()
 
     
-    plt.savefig(save_path, dpi=300)
+    plt.savefig('results/X-coordinate distribution histogram and theoretical normal distribution.png', dpi=300)
     plt.show()
 
     
