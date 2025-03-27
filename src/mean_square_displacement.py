@@ -18,22 +18,22 @@ def random_walk_finals(num_steps=1000, num_walks=1000):
     """
     # TODO: 实现随机游走算法
     # 提示：
-    # 1. 使用np.zeros初始化数组
+    # 使用np.zeros初始化数组
     x = np.zeros((num_walks, num_steps))
     y = np.zeros((num_walks, num_steps))
-    # 2. 使用np.random.choice生成随机步长
+    
+    # 使用np.random.choice生成随机步长
     for i in range(num_steps - 1):
         step_x = np.random.choice([-1, 1], size=num_walks)
         step_y = np.random.choice([-1, 1], size=num_walks)
         x[:, i+1] = x[:, i] + step_x
         y[:, i+1] = y[:, i] + step_y
     
-    # 3. 使用np.sum计算总位移
+    # 计算总位移
     x_finals = x[:, -1]
     y_finals = y[:, -1]
     
     return (x_finals, y_finals)
-    
 
 
 def calculate_mean_square_displacement():
@@ -56,15 +56,12 @@ def calculate_mean_square_displacement():
     for num_steps in steps:
         x_finals, y_finals = random_walk_finals(num_steps, 1000)
         displacement_squared = x_finals**2 + y_finals**2
-    # 3. 使用np.mean计算平均值
-    mean_sq_displacement = np.mean(displacement_squared)
+         # 3. 使用np.mean计算平均值
+        mean_sq_displacement = np.mean(displacement_squared)
         msd.append(mean_sq_displacement)
     
     return (np.array(steps), np.array(msd))
-
     
-
-
 def analyze_step_dependence():
     """分析均方位移与步数的关系，并进行最小二乘拟合
     
