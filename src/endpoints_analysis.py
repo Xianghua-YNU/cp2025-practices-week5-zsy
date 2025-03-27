@@ -26,19 +26,21 @@ def random_walk_finals(num_steps, num_walks):
         return (np.zeros(num_walks), np.zeros(num_walks))
         
     # 1. 使用np.zeros初始化坐标数组
-    x = np.zeros((num_walks, num_steps))
-    y = np.zeros((num_walks, num_steps))
+    x = np.zeros((num_walks, num_steps + 1))
+    y = np.zeros((num_walks, num_steps + 1))
     # 2. 对每次游走使用np.random.choice生成±1的随机步长
-    for i in range(num_steps - 1):
-        step_x = np.random.choice([-1, 1], size=num_walks)
-        step_y = np.random.choice([-1, 1], size=num_walks)
-        x[:, i+1] = x[:, i] + step_x
-        y[:, i+1] = y[:, i] + step_y
-    # 3. 使用np.sum计算总位移
+    for i in range(num_walks):
+        steps_x = np.random.choice([-1, 1], size=num_steps)
+        steps_y = np.random.choice([-1, 1], size=num_steps)
+        
+        x[i, 1:] = np.cumsum(steps_x)
+        y[i, 1:] = np.cumsum(steps_y)
+
     x_finals = x[:, -1]
     y_finals = y[:, -1]
-    
+
     return (x_finals, y_finals)
+
     
 
 def plot_endpoints_distribution(endpoints):
@@ -62,9 +64,9 @@ def plot_endpoints_distribution(endpoints):
     # 1. 使用endpoints解包获取x和y坐标
     x_coords, y_coords = endpoints
     # 2. 使用plt.scatter绘制散点图
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 10))
     # 3. 设置坐标轴比例、标题和标签
-    plt.scatter(x_coords, y_coords, alpha=0.5)
+    plt.scatter(x_coords, y_coords, s=10, alpha=0.5)
     plt.title('随机游走终点分布')
     plt.xlabel('x坐标')
     plt.ylabel('y坐标')
@@ -104,20 +106,24 @@ def analyze_x_distribution(endpoints):
     mean = np.mean(x_coords)
     variance = np.var(x_coords, ddof=1)
     # 3. 绘制直方图
-    plt.figure(figsize=(8, 6))
-    plt.hist(x_coords, bins=20, density=True, alpha=0.6, label='直方图')
+    plt.figure(figsize=(10, 6))
+    plt.hist(x_coords, bins=30, density=True, alpha=0.6, color='b', label='样本分布')
+
     # 4. 添加理论正态分布曲线
-    x = np.linspace(mean - 3*np.sqrt(variance), mean + 3*np.sqrt(variance), 100)
-    norm_dist = (1 / (np.sqrt(2*np.pi*variance))) * np.exp(-(x - mean)**2 / (2*variance))
-    plt.plot(x, norm_dist, 'r-', label='理论正态分布')
+    x = np.linspace(min(x_coords), max(x_coords), 100)
+    sigma = np.sqrt(variance)
+    normal_dist = 1/(sigma * np.sqrt(2*np.pi)) * np.exp(-(x - mean)**2 / (2*sigma**2))
+    plt.plot(x, normal_dist, 'r-', label='理论正态分布')
     # 5. 设置图形属性并打印统计结果
-    plt.title('x坐标分布分析')
+    plt.title('x坐标分布直方图与理论正态分布')
     plt.xlabel('x坐标')
-    plt.ylabel('频率/密度')
+    plt.ylabel('概率密度')
     plt.legend()
+
     
-    plt.savefig('results/x_distribution_analysis.png', dpi=300)
+    plt.savefig(save_path, dpi=300)
     plt.show()
+
     
     return (mean, variance)
     
