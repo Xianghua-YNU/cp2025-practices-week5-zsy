@@ -18,10 +18,12 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     # 3. 使用plt绘制图形并设置标签
     plt.figure(figsize=(8, 6))
     plt.stem(l_values, pmf, linefmt='b-', markerfmt='bo', basefmt='g--')
-    plt.title(f'poisson distribution PMF (λ={lambda_param})')
-    plt.xlabel('l')
-    plt.ylabel('probability')
+    plt.title(f'泊松分布PMF (λ={lambda_param})')
+    plt.xlabel('l值')
+    plt.ylabel('概率')
     plt.grid(True)
+    
+    plt.plot(l_values, pmf, 'b-')
     
     # 保存图片
     plt.savefig('results/poisson_pmf.png', dpi=300)
