@@ -18,9 +18,9 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     # 3. 使用plt绘制图形并设置标签
     plt.figure(figsize=(8, 6))
     plt.stem(l_values, pmf, linefmt='b-', markerfmt='bo', basefmt='g--')
-    plt.title(f'泊松分布PMF (λ={lambda_param})')
-    plt.xlabel('l值')
-    plt.ylabel('概率')
+    plt.title(f'poisson distribution PMF (λ={lambda_param})')
+    plt.xlabel('l')
+    plt.ylabel('probability')
     plt.grid(True)
     
     # 保存图片
@@ -71,9 +71,9 @@ def compare_simulation_theory(n_experiments=10000, lambda_param=8):
     plt.figure(figsize=(10, 6))
     plt.hist(heads_count, bins=np.arange(-0.5, max_l + 0.5), alpha=0.7, label='实验结果', density=False)
     plt.plot(l_values, theoretical_counts, 'ro-', label='理论分布')
-    plt.title(f'实验结果与理论分布对比 (λ={lambda_param})')
-    plt.xlabel('正面次数')
-    plt.ylabel('频数')
+    plt.title(f'Comparison of experiment and theory (λ={lambda_param})')
+    plt.xlabel('Number of heads')
+    plt.ylabel('frequency')
     plt.legend()
     plt.grid(True)
     
@@ -81,10 +81,10 @@ def compare_simulation_theory(n_experiments=10000, lambda_param=8):
     plt.show()
     
     # 4. 计算并打印统计信息
-    print("实验结果统计信息:")
-    print(f"  实验组数: {n_experiments}")
-    print(f"  平均正面次数: {np.mean(heads_count):.2f}")
-    print(f"  标准差: {np.std(heads_count):.2f}")
+    print("Experimental results statistics:")
+    print(f"  Experimental group number: {n_experiments}")
+    print(f"  Mean head count: {np.mean(heads_count):.2f}")
+    print(f"  standard deviation: {np.std(heads_count):.2f}")
 
 
 if __name__ == "__main__":
