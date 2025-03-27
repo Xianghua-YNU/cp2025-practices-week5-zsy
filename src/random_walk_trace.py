@@ -60,14 +60,15 @@ def plot_multiple_walks():
     fig.suptitle('四个不同的二维随机行走轨迹（1000步）')
     for i in range(2):
         for j in range(2):
-            x_coords, y_coords = random_walk_2d(1000)
-    #    - 绘制轨迹线
-     axs[i, j].plot(x_coords, y_coords)
+             x_coords, y_coords = random_walk_2d(1000)
+     #    - 绘制轨迹线
+            axs[i, j].plot(x_coords, y_coords)
             axs[i, j].scatter([0], [0], color='green', zorder=2)
             axs[i, j].scatter([x_coords[-1]], [y_coords[-1]], color='red', zorder=2)
             axs[i, j].set_title(f'轨迹 {i*2+j+1}')
             axs[i, j].axis('equal')
             axs[i, j].grid(True)
+        
     plt.tight_layout()
     plt.savefig('results/multiple_walks.png', dpi=300)
     plt.show()
