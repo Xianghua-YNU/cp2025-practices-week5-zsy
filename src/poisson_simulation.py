@@ -26,6 +26,8 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     plt.savefig('results/poisson_pmf.png', dpi=300)
     plt.show()
     
+    return pmf
+    
 
 def simulate_coin_flips(n_experiments=10000, n_flips=100, p_head=0.08):
     """模拟多组抛硬币实验
