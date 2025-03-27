@@ -22,6 +22,9 @@ def random_walk_finals(num_steps, num_walks):
     """
     # TODO: 实现随机游走算法
     # 提示：
+    if num_steps <= 0:
+        return (np.zeros(num_walks), np.zeros(num_walks))
+        
     # 1. 使用np.zeros初始化坐标数组
     x = np.zeros((num_walks, num_steps))
     y = np.zeros((num_walks, num_steps))
