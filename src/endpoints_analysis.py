@@ -22,10 +22,24 @@ def random_walk_finals(num_steps, num_walks):
     """
     # TODO: 实现随机游走算法
     # 提示：
+        
     # 1. 使用np.zeros初始化坐标数组
+    x = np.zeros((num_walks, num_steps + 1))
+    y = np.zeros((num_walks, num_steps + 1))
     # 2. 对每次游走使用np.random.choice生成±1的随机步长
-    # 3. 使用np.sum计算总位移
-    pass
+    for i in range(num_walks):
+        steps_x = np.random.choice([-1, 1], num_steps)  
+        steps_y = np.random.choice([-1, 1], num_steps)
+        
+        x[i, 1:] = np.cumsum(steps_x)
+        y[i, 1:] = np.cumsum(steps_y)
+
+    x_finals = x[:, -1]
+    y_finals = y[:, -1]
+
+    return (x_finals, y_finals)
+
+    
 
 def plot_endpoints_distribution(endpoints):
     """绘制二维随机游走终点的空间分布散点图
@@ -46,9 +60,19 @@ def plot_endpoints_distribution(endpoints):
     # TODO: 实现散点图绘制
     # 提示：
     # 1. 使用endpoints解包获取x和y坐标
+    x_coords, y_coords = endpoints
     # 2. 使用plt.scatter绘制散点图
+    plt.figure(figsize=(10, 10))
     # 3. 设置坐标轴比例、标题和标签
-    pass
+    plt.scatter(x_coords, y_coords, s=10, alpha=0.5)
+    plt.title('随机游走终点分布')
+    plt.xlabel('x坐标')
+    plt.ylabel('y坐标')
+    plt.axis('equal')
+    
+    plt.savefig('results/endpoints_distribution.png', dpi=300)
+    plt.show()
+    
 
 def analyze_x_distribution(endpoints):
     """分析二维随机游走终点x坐标的统计特性
@@ -75,12 +99,31 @@ def analyze_x_distribution(endpoints):
     # TODO: 实现统计分析和可视化
     # 提示：
     # 1. 提取x坐标数据
+    x_coords, _ = endpoints
     # 2. 使用numpy计算均值和方差
+    mean = np.mean(x_coords)
+    variance = np.var(x_coords, ddof=1)
     # 3. 绘制直方图
-    # 4. 添加理论正态分布曲线
-    # 5. 设置图形属性并打印统计结果
-    pass
+    plt.figure(figsize=(10, 6))
+    plt.hist(x_coords, bins=30, density=True, alpha=0.6, color='b', label='样本分布')
 
+    # 4. 添加理论正态分布曲线
+    x = np.linspace(min(x_coords), max(x_coords), 100)
+    sigma = np.sqrt(variance)
+    normal_dist = 1/(sigma * np.sqrt(2*np.pi)) * np.exp(-(x - mean)**2 / (2*sigma**2))
+    plt.plot(x, normal_dist, 'r-', label='理论正态分布')
+    # 5. 设置图形属性并打印统计结果
+    plt.title('x坐标分布直方图与理论正态分布')
+    plt.xlabel('x坐标')
+    plt.ylabel('概率密度')
+    plt.legend()
+
+    plt.savefig('results/X-coordinate distribution histogram and theoretical normal distribution.png', dpi=300)
+    plt.show()
+
+    
+    return (mean, variance)
+    
 if __name__ == "__main__":
     np.random.seed(42)  # 设置随机种子以保证可重复性
     
