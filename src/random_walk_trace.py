@@ -82,4 +82,4 @@ if __name__ == "__main__":
     single_path = random_walk_2d(1000)
     plot_single_walk(single_path)
     # 2. 生成并绘制多个轨迹
-    plot_multiple_walks()
+    pass

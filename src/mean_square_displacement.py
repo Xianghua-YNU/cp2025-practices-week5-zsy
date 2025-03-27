@@ -95,16 +95,5 @@ if __name__ == "__main__":
     plt.scatter(steps, msd, color='blue', label='实验数据')
     plt.plot(steps, k * steps, color='red', label=f'拟合曲线 (k={k:.4f})')
     # 3. 设置图形属性
-    plt.title('均方位移与步数的关系')
-    plt.xlabel('步数')
-    plt.ylabel('均方位移')
-    plt.legend()
-    plt.grid(True)
-    
-    plt.savefig('results/msd_vs_steps.png', dpi=300)
     # 4. 打印数据分析结果
-    print("数据分析结果:")
-    print(f"  拟合系数 k: {k:.4f}")
-    
-    # 显示图形
-    plt.show()
+    pass

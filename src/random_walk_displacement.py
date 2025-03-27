@@ -89,4 +89,3 @@ if __name__ == "__main__":
     # 2. 绘制位移分布直方图
     plot_displacement_distribution(displacements, bins)
     # 3. 绘制位移平方分布直方图
-    plot_displacement_square_distribution(displacements, bins)
