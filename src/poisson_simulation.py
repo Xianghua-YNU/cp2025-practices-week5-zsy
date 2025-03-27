@@ -12,7 +12,7 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     # TODO: 实现泊松分布概率质量函数的计算和绘制
     # 提示：
     # 1. 使用np.arange生成l值序列
-    l_values = np.arange(0, max_l + 1)
+    l_values = np.arange(0, max_l)
     # 2. 使用给定公式计算PMF
     pmf = (lambda_param**l_values * np.exp(-lambda_param)) / factorial(l_values)
     # 3. 使用plt绘制图形并设置标签
@@ -67,7 +67,7 @@ def compare_simulation_theory(n_experiments=10000, lambda_param=8):
     theoretical_counts = pmf * n_experiments
     # 3. 绘制直方图和理论曲线
     plt.figure(figsize=(10, 6))
-    plt.hist(heads_count, bins=np.arange(-0.5, max_l + 1.5), alpha=0.7, label='实验结果', density=False)
+    plt.hist(heads_count, bins=np.arange(-0.5, max_l + 0.5), alpha=0.7, label='实验结果', density=False)
     plt.plot(l_values, theoretical_counts, 'ro-', label='理论分布')
     plt.title(f'实验结果与理论分布对比 (λ={lambda_param})')
     plt.xlabel('正面次数')
