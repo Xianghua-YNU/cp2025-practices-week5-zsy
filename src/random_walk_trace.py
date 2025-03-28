@@ -33,14 +33,14 @@ def plot_single_walk(path):
     x_coords, y_coords = path
     
     plt.figure(figsize=(8, 8))
-    plt.plot(x_coords, y_coords, label='随机行走轨迹')
+    plt.plot(x_coords, y_coords, label='random walk trace')
     # 2. 使用 plt.scatter 标记起点和终点
-    plt.scatter([0], [0], color='green', label='起点', zorder=2)
-    plt.scatter([x_coords[-1]], [y_coords[-1]], color='red', label='终点', zorder=2)
+    plt.scatter([0], [0], color='green', label='origin', zorder=2)
+    plt.scatter([x_coords[-1]], [y_coords[-1]], color='red', label='destination', zorder=2)
     # 3. 设置坐标轴比例相等
-    plt.title('二维随机行走轨迹（1000步）')
-    plt.xlabel('x坐标')
-    plt.ylabel('y坐标')
+    plt.title('Two-dimensional random walk path (1000 steps)')
+    plt.xlabel('x')
+    plt.ylabel('y')
     plt.axis('equal')
     # 4. 添加图例
     plt.legend()
@@ -56,7 +56,7 @@ def plot_multiple_walks():
     # 1. 创建2x2的子图布局
     fig, axs = plt.subplots(2, 2, figsize=(12, 10))
     # 2. 对每个子图重复以下步骤：
-    fig.suptitle('四个不同的二维随机行走轨迹（1000步）')
+    fig.suptitle('Four different 2D random walk tracks (1000 steps)')
     for i in range(2):
         for j in range(2):
     # —— 生成随机行走轨迹
@@ -66,7 +66,7 @@ def plot_multiple_walks():
             axs[i, j].plot(x_coords, y_coords)
             axs[i, j].scatter([0], [0], color='green', zorder=2)
             axs[i, j].scatter([x_coords[-1]], [y_coords[-1]], color='red', zorder=2)
-            axs[i, j].set_title(f'轨迹 {i*2+j+1}')
+            axs[i, j].set_title(f'trace {i*2+j+1}')
             axs[i, j].axis('equal')
             axs[i, j].grid(True)
         
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     single_path = random_walk_2d(1000)
     plot_single_walk(single_path)
     # 2. 生成并绘制多个轨迹
-    pass
+    plot_multiple_walks()

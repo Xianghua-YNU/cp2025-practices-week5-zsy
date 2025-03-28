@@ -19,8 +19,8 @@ def plot_poisson_pmf(lambda_param=8, max_l=20):
     plt.figure(figsize=(8, 6))
     plt.stem(l_values, pmf, linefmt='b-', markerfmt='bo', basefmt='g--')
     plt.title(f'Poisson Probability Mass Function (λ={lambda_param})')
-    plt.xlabel('l值')
-    plt.ylabel('概率')
+    plt.xlabel('l')
+    plt.ylabel('frequency')
     plt.grid(True)
     
     plt.plot(l_values, pmf, 'b-')
@@ -71,8 +71,8 @@ def compare_simulation_theory(n_experiments=10000, lambda_param=8):
     theoretical_counts = pmf * n_experiments
     # 3. 绘制直方图和理论曲线
     plt.figure(figsize=(10, 6))
-    plt.hist(heads_count, bins=np.arange(-0.5, max_l + 0.5), alpha=0.7, label='实验结果', density=False)
-    plt.plot(l_values, theoretical_counts, 'ro-', label='理论分布')
+    plt.hist(heads_count, bins=np.arange(-0.5, max_l + 0.5), alpha=0.7, label='experimental result', density=False)
+    plt.plot(l_values, theoretical_counts, 'ro-', label='theoretical distribution')
     plt.title(f'Comparison of experiment and theory (λ={lambda_param})')
     plt.xlabel('Number of heads')
     plt.ylabel('frequency')
