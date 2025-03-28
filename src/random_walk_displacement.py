@@ -41,12 +41,12 @@ def plot_displacement_distribution(final_displacements, bins=30):
     y_displacements = final_displacements[1]
     # 2. 使用plt.hist绘制直方图
     plt.figure(figsize=(8, 6))
-    plt.hist(x_displacements, bins=bins, alpha=0.5, label='x方向位移')
-    plt.hist(y_displacements, bins=bins, alpha=0.5, label='y方向位移')
+    plt.hist(x_displacements, bins=bins, alpha=0.5, label='Displacement in x direction')
+    plt.hist(y_displacements, bins=bins, alpha=0.5, label='Displacement in y direction')
     # 3. 添加标题和标签
-    plt.title('位移分布直方图')
-    plt.xlabel('位移')
-    plt.ylabel('频数')
+    plt.title('Displacement distribution histogram')
+    plt.xlabel('displacement')
+    plt.ylabel('frequency')
     plt.legend()
     
     plt.savefig('results/displacement_distribution.png', dpi=300)
@@ -69,9 +69,9 @@ def plot_displacement_square_distribution(final_displacements, bins=30):
     plt.figure(figsize=(8, 6))
     plt.hist(displacement_squares, bins=bins, alpha=0.7)
     # 3. 添加标题和标签
-    plt.title('位移平方分布直方图')
-    plt.xlabel('位移平方')
-    plt.ylabel('频数')
+    plt.title('Displacement square distribution histogram')
+    plt.xlabel('Displacement squared')
+    plt.ylabel('frequency')
     
     plt.savefig('results/displacement_square_distribution.png', dpi=300)
     plt.show()
@@ -89,3 +89,4 @@ if __name__ == "__main__":
     # 2. 绘制位移分布直方图
     plot_displacement_distribution(displacements, bins)
     # 3. 绘制位移平方分布直方图
+    plot_displacement_square_distribution(displacements, bins)
