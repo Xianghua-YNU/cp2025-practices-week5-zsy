@@ -65,9 +65,9 @@ def plot_endpoints_distribution(endpoints):
     plt.figure(figsize=(10, 10))
     # 3. 设置坐标轴比例、标题和标签
     plt.scatter(x_coords, y_coords, s=10, alpha=0.5)
-    plt.title('随机游走终点分布')
-    plt.xlabel('x坐标')
-    plt.ylabel('y坐标')
+    plt.title('Random walk endpoint distribution')
+    plt.xlabel('x')
+    plt.ylabel('y')
     plt.axis('equal')
     
     plt.savefig('results/endpoints_distribution.png', dpi=300)
@@ -113,13 +113,14 @@ def analyze_x_distribution(endpoints):
     normal_dist = 1/(sigma * np.sqrt(2*np.pi)) * np.exp(-(x - mean)**2 / (2*sigma**2))
     plt.plot(x, normal_dist, 'r-', label='理论正态分布')
     # 5. 设置图形属性并打印统计结果
-    plt.title('x坐标分布直方图与理论正态分布')
-    plt.xlabel('x坐标')
-    plt.ylabel('概率密度')
+    plt.title('X-coordinate distribution histogram and theoretical normal distribution')
+    plt.xlabel('x')
+    plt.ylabel('probability density')
     plt.legend()
 
     plt.savefig('results/X-coordinate distribution histogram and theoretical normal distribution.png', dpi=300)
     plt.show()
+
 
     
     return (mean, variance)
