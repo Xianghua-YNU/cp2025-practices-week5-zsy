@@ -121,6 +121,7 @@ def analyze_x_distribution(endpoints):
     plt.savefig('results/X-coordinate distribution histogram and theoretical normal distribution.png', dpi=300)
     plt.show()
 
+
     
     return (mean, variance)
     
